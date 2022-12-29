@@ -6,4 +6,4 @@ const tasksModel = db.define('Tasks',{
     description: DataTypes.STRING
 })
 
-module.export = tasksModel
+module.exports = tasksModel

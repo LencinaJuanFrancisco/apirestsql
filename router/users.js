@@ -47,12 +47,27 @@ router.patch('/:id',async(req,res)=>{
             }
         })
         console.log(rta);
-        rta[0] > 0 ? res.status(201).json({message:"usuario modificado",data:rta})
+        rta[0] > 0 ? res.status(201).json({message:"usuario modificado",data:rta[1]})
                    : res.status(201).json({message:"Usuario no encontrado"})
     } catch (error) {
         res.status(400).json(error.message)
     }
 
+})
+router.delete('/:id',async(req,res)=>{
+    const {id} = req.params
+    try {
+        const rta = await UserModel.destroy({
+            where:{
+                id:id
+            }
+        })
+        console.log(rta);
+        rta === 0 ? res.status(201).json({message:"usuario no encontrado"})
+                  : res.status(200).json({message:"Eliminado"})
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
 })
 
 

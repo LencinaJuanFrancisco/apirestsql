@@ -1,12 +1,12 @@
 const express = require('express')
 const app = express()
 const db = require('./model/connect')
+const routerApi = require('./router')
+
 app.use(express.json())
 
+routerApi(app)
 
-app.use('/users',require('./router/users'))
-app.use('/roles',require('./router/roles'))
-app.use('/tasks',require('./router/tasks'))
 
 db.sync().then(() => {
     console.log("Conectado a SQLite")
